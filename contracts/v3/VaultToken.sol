@@ -1,19 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
 
-import "../vendor/LinkToken/token/LinkERC20.sol";
-import "../vendor/LinkToken/ERC677Token.sol";
-
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "./interfaces/IManager.sol";
 import "./interfaces/IVaultToken.sol";
 
 /**
  * @notice Vault Token
  * @dev Contract has been copied from:
- * https://github.com/smartcontractkit/LinkToken/blob/master/contracts/v0.6/LinkToken.sol
  * with modification made to specify name and symbol, deploys with 0 total supply
  */
-contract VaultToken is IVaultToken, LinkERC20, ERC677Token {
+contract VaultToken is IVaultToken, ERC20 {
 
     IManager public immutable manager;
 
