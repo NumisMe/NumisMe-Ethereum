@@ -12,9 +12,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         convexBoost,
         stableSwapALETHPool,
         unirouter,
-        sushirouter,
-        CONTROLLER,
-        MANAGER
+        sushirouter
     } = await getNamedAccounts();
 
     const Manager = await deployments.get('Manager');
@@ -41,8 +39,8 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
             pid,
             convexBoost,
             stableSwapALETHPool,
-            CONTROLLER,
-            MANAGER,
+            Controller.address,
+            Manager.address,
             routers
         ]
     });

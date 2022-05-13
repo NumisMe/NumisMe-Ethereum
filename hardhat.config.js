@@ -36,8 +36,7 @@ module.exports = {
         },
         localhost: {
             chainId: 31337,
-            timeout: 200000000,
-            accounts: mainnetAccounts
+            timeout: 200000000
         }
     },
     etherscan: {
@@ -98,7 +97,7 @@ module.exports = {
         },
         deployer: {
             1: process.env.DEPLOYER_ADDRESS,
-            31337: process.env.DEPLOYER_ADDRESS,
+            31337: "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
         },
         developFund: {
             default: 5,
@@ -243,10 +242,8 @@ module.exports = {
             31337: '0x66C5c16d13a38461648c1D097f219762D374B412'
         },
         treasury: {
-            default: 1,
-            1: '0xC1d40e197563dF727a4d3134E8BD1DeF4B498C6f',
-            42: '0x36D68d13dD18Fe8076833Ef99245Ef33B00A7259',
-            31337: '0xC1d40e197563dF727a4d3134E8BD1DeF4B498C6f'
+            1: process.env.DEPLOYER_ADDRESS,
+            31337: "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
         },
         unirouter: {
             1: '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
@@ -306,7 +303,7 @@ module.exports = {
         dYdXSoloMargin: {
             1: '0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e'
         },
-        RENCRV: {
+        RENBTCCRV: {
             1: '0x49849C98ae39Fff122806C06791Fa73784FB3675',
             31337: '0x49849C98ae39Fff122806C06791Fa73784FB3675'
         },
@@ -322,7 +319,7 @@ module.exports = {
             1: '0xb576491f1e6e5e62f1d8f26062ee822b40b0e0d4',
             31337: '0xb576491f1e6e5e62f1d8f26062ee822b40b0e0d4'
         },
-        CVXETH: {
+        CVXETHCRV: {
             1: '0x3A283D9c08E8b55966afb64C515f5143cf907611',
             31337: '0x3A283D9c08E8b55966afb64C515f5143cf907611'
         },
@@ -357,6 +354,10 @@ module.exports = {
         NUME: {
             1: '0x34769D3e122C93547836AdDD3eb298035D68F1C3',
             31337: '0x34769D3e122C93547836AdDD3eb298035D68F1C3'
+        },
+        NUMEETHLP: {
+            1: '0xF06550C34946D251C2EACE59fF4336168dB7EbF2',
+            31337: '0xF06550C34946D251C2EACE59fF4336168dB7EbF2'
         }
     },
     solidity: {

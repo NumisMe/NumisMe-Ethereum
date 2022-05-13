@@ -1,12 +1,12 @@
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy } = deployments;
-    let { deployer, YAXIS } = await getNamedAccounts();
+    let { deployer, NUME } = await getNamedAccounts();
 
     await deploy('Manager', {
         from: deployer,
         log: true,
-        args: [YAXIS]
+        args: [NUME]
     });
 };
 
-module.exports.tags = ['avax'];
+module.exports.tags = ['eth'];

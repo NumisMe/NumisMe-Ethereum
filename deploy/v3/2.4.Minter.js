@@ -1,12 +1,12 @@
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy, execute } = deployments;
-    const { deployer, YAXIS } = await getNamedAccounts();
+    const { deployer, NUME } = await getNamedAccounts();
     const GaugeController = await deployments.get('GaugeController');
 
     const MinterWrapper = await deployments.deploy('MinterWrapper', {
         from: deployer,
         log: true,
-        args: [YAXIS]
+        args: [NUME]
     });
 
     const Minter = await deployments.deploy('Minter', {
@@ -25,4 +25,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     }
 };
 
-module.exports.tags = ['avax'];
+module.exports.tags = ['eth'];

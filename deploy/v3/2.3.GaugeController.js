@@ -1,26 +1,14 @@
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { ethers } = require('hardhat');
     const { deploy, execute } = deployments;
-    const { deployer, treasury, YAXIS } = await getNamedAccounts();
+    const { deployer, treasury, NUME } = await getNamedAccounts();
 
-    let votingEscrow;
-    try {
-        votingEscrow = await deployments.get('VotingEscrow');
-    } catch {
-        const name = 'Vote-escrowed YAXIS';
-        const symbol = 'veYAXIS';
-        const version = 'veYAXIS_1.0.0';
-        votingEscrow = await deploy({
-            from: deployer,
-            log: true,
-            args: [YAXIS, name, symbol, version]
-        });
-    }
+    votingEscrow = await deployments.get('VotingEscrow');
 
     const GaugeController = await deploy('GaugeController', {
         from: deployer,
         log: true,
-        args: [YAXIS, votingEscrow.address]
+        args: [NUME, votingEscrow.address]
     });
 
     if (GaugeController.newlyDeployed) {
@@ -40,4 +28,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     }
 };
 
-module.exports.tags = ['avax'];
+module.exports.tags = ['eth'];

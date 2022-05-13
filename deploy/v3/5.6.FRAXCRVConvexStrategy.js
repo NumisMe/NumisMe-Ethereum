@@ -13,10 +13,12 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         unirouter,
         sushirouter,
         USDC,
-        FRAXPOOL,
-        CONTROLLER,
-        MANAGER
+        FRAXPOOL
     } = await getNamedAccounts();
+
+    const Manager = await deployments.get('Manager');
+    const Controller = await deployments.get('Controller');
+    const Vault = await deployments.get('FRAXCRVVault');
     
     const name = 'NumisMe Convex Strategy: FRAXCRV';
     let pid = 32;
@@ -39,8 +41,8 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
             FRAXPOOL,
             convexBoost,
             FRAXStableSwap,
-            CONTROLLER, // controller
-            MANAGER, // manager
+            Controller.address,
+            Manager.address,
             routers
         ]
     });

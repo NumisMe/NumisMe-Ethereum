@@ -11,10 +11,12 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         convexBoost,
         stableSwapLINKPool,
         unirouter,
-        sushirouter,
-        CONTROLLER,
-        MANAGER
+        sushirouter
     } = await getNamedAccounts();
+
+    const Manager = await deployments.get('Manager');
+    const Controller = await deployments.get('Controller');
+    const Vault = await deployments.get('LINKCRVVault');
 
     const name = 'NumisMe Convex Strategy: LINKCRV';
     let pid = 30;
@@ -37,8 +39,8 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
             convexBoost,
             stableSwapLINKPool,
             0,
-            CONTROLLER,
-            MANAGER,
+            Controller.address,
+            Manager.address,
             routers
         ]
     });

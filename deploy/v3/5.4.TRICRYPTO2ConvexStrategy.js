@@ -11,10 +11,12 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         convexBoost,
         TRICRYPTO2StableSwap,
         unirouter,
-        sushirouter,
-        CONTROLLER,
-        MANAGER
+        sushirouter
     } = await getNamedAccounts();
+
+    const Manager = await deployments.get('Manager');
+    const Controller = await deployments.get('Controller');
+    const Vault = await deployments.get('TRICRYPTO2Vault');
 
     const name = 'NumisMe Convex Strategy: TRICRYPTO2';
     let pid = 38;
@@ -36,8 +38,8 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
             2,
             convexBoost,
             TRICRYPTO2StableSwap,
-            CONTROLLER,
-            MANAGER,
+            Controller.address,
+            Manager.address,
             routers
         ]
     });

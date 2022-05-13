@@ -4,18 +4,20 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy, execute } = deployments;
     let {
         CRVETHPOOL,
-        CVXETH,
+        CVXETHCRV,
         WETH,
         deployer,
         convexBoost,
         CVXETHPOOL,
         unirouter,
-        sushirouter,
-        MANAGER,
-        CONTROLLER
+        sushirouter
     } = await getNamedAccounts();
+
+    const Manager = await deployments.get('Manager');
+    const Controller = await deployments.get('Controller');
+    const Vault = await deployments.get('CVXETHCRVVault');
     
-    const name = 'NumisMe Convex Strategy: CVXETH';
+    const name = 'NumisMe Convex Strategy: CVXETHCRV';
     let pid = 64;
 
     const routers = [sushirouter, unirouter]; // sushi, uni routers
@@ -27,7 +29,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         log: true,
         args: [
             name,
-            CVXETH,
+            CVXETHCRV,
             CRVETHPOOL,
             CVXETHPOOL,
             WETH,
@@ -35,8 +37,8 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
             2,
             convexBoost,
             CVXETHPOOL,
-            CONTROLLER,
-            MANAGER,
+            Controller.address,
+            Manager.address,
             routers
         ]
     });

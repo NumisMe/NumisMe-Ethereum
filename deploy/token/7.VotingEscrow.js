@@ -12,4 +12,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     });
 };
 
-module.exports.tags = ['v3', 'gauges', 'avax'];
+module.exports.tags = ['eth'];

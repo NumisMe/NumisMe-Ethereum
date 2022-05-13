@@ -1,28 +1,28 @@
 module.exports = async ({ getChainId, getNamedAccounts, deployments }) => {
     const { deploy, execute } = deployments;
     const chainId = await getChainId();
-    let { deployer, MIMCRV } = await getNamedAccounts();
+    let { deployer, TRICRYPTO2 } = await getNamedAccounts();
     const Controller = await deployments.get('Controller');
     const Manager = await deployments.get('Manager');
     const Minter = await deployments.get('Minter');
     const GaugeProxy = await deployments.get('GaugeProxy');
     const GaugeUsers = await deployments.get('GaugeUsers');
 
-    const VaultToken = await deploy('MIM3CRVVaultToken', {
+    const VaultToken = await deploy('TRICRYPTO2VaultToken', {
         contract: 'VaultToken',
         from: deployer,
         log: true,
-        args: ['NumisMe MIM3CRV Vault Token', 'nV:MIM3CRV', Manager.address]
+        args: ['NumisMe TRICRYPTO2 Vault Token', 'nV:TRICRYPTO2', Manager.address]
     });
 
-    const Vault = await deploy('MIM3CRVVault', {
+    const Vault = await deploy('TRICRYPTO2Vault', {
         contract: 'Vault',
         from: deployer,
         log: true,
-        args: [MIMCRV, VaultToken.address, Manager.address]
+        args: [TRICRYPTO2, VaultToken.address, Manager.address]
     });
 
-    const Gauge = await deploy('MIM3CRVVaultGauge', {
+    const Gauge = await deploy('TRICRYPTO2VaultGauge', {
         contract: 'LiquidityGaugeV2',
         from: deployer,
         log: true,
@@ -54,7 +54,7 @@ module.exports = async ({ getChainId, getNamedAccounts, deployments }) => {
             Controller.address
         );
         await execute(
-            'MIM3CRVVault',
+            'TRICRYPTO2Vault',
             { from: deployer, log: true },
             'setGauge',
             Gauge.address

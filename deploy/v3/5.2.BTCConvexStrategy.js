@@ -5,16 +5,18 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     let {
         CRVETHPOOL,
         CVXETHPOOL,
-        RENCRV,
+        RENBTCCRV,
         WETH,
         deployer,
         convexBoost,
         stableSwapBTCPool,
         unirouter,
-        sushirouter,
-        CONTROLLER,
-        MANAGER
+        sushirouter
     } = await getNamedAccounts();
+
+    const Manager = await deployments.get('Manager');
+    const Controller = await deployments.get('Controller');
+    const Vault = await deployments.get('RENBTCCRVVault');
 
     const name = 'NumisMe Convex Strategy: RENBTC';
     let pid = 6;
@@ -28,7 +30,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         log: true,
         args: [
             name,
-            RENCRV,
+            RENBTCCRV,
             CRVETHPOOL,
             CVXETHPOOL,
             WETH,
@@ -37,8 +39,8 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
             convexBoost,
             stableSwapBTCPool,
             1,
-            CONTROLLER,
-            MANAGER,
+            Controller.address,
+            Manager.address,
             routers
         ]
     });
