@@ -200,6 +200,10 @@ contract RewardGaugeController {
         emit ForceBaseEmission(_baseEmission);
     }
 
+    function gaugesLength() external view returns (uint) {
+        return gauges.length;
+    }
+
     // EVENTS
     event CreateGauge(address _gauge, address _lp);
     event KillGauge(address _gauge);
