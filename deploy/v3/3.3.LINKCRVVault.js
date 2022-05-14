@@ -62,4 +62,4 @@ module.exports = async ({ getChainId, getNamedAccounts, deployments }) => {
     }
 };
 
-module.exports.tags = ['eth'];
+module.exports.tags = ['unused'];

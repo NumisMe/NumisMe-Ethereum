@@ -64,4 +64,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     );
 };
 
-module.exports.tags = ['eth'];
+module.exports.tags = ['unused'];
