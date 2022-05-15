@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/v3/GaugeUsers.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n\npragma solidity 0.6.12;\npragma experimental ABIEncoderV2;\n\ninterface Gauge {\n    function balanceOf(address user) external view returns (uint256);\n    function user_checkpoint(address user) external returns (bool);\n}\n\ncontract GaugeUsers {\n\n    mapping (address => mapping (address => bool)) private _isGaugeUser;\n    mapping (address => address[]) private _users;\n\n    function isGaugeUser(address gauge, address user) public view returns (bool) {\n        return _isGaugeUser[gauge][user];\n    }\n\n    function users(address gauge) public view returns (address[] memory) {\n        return _users[gauge];\n    }\n\n    function addUser(address user) external {\n        if (!_isGaugeUser[msg.sender][user]) {\n            _isGaugeUser[msg.sender][user] = true;\n            _users[msg.sender].push(user);\n        }\n    }\n\n    function checkpointUsers(address _gauge, address[] memory users) external {\n        Gauge gauge = Gauge(_gauge);\n        address user;\n        for (uint i=0; i<users.length; i++) {\n            user = users[i];\n            if (gauge.balanceOf(user) > 0) {\n                gauge.user_checkpoint(user);\n            }\n        }\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

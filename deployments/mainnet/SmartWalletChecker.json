@@ -1,0 +1,203 @@
+{
+  "address": "0x215C30a7224e8e68BB4BAA5b97D2FbDb51a88f53",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "check",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "isAllowed",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "isManager",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_contract",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "_status",
+          "type": "bool"
+        }
+      ],
+      "name": "setAllowedContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_manager",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "_status",
+          "type": "bool"
+        }
+      ],
+      "name": "setManager",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x3fe4cc65d71bb015850ecd72bb617dfa5edd9a9a4688ccaf4bb85d2aaccb62a6",
+  "receipt": {
+    "to": null,
+    "from": "0x633Db21C73594FBB1cD0DC8829682874f35aD8EF",
+    "contractAddress": "0x215C30a7224e8e68BB4BAA5b97D2FbDb51a88f53",
+    "transactionIndex": 184,
+    "gasUsed": "224890",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x1eeac88ab6818da6e640c1fca936fec1acf6a03f372e572b4ccb0aa2d1997e21",
+    "transactionHash": "0x3fe4cc65d71bb015850ecd72bb617dfa5edd9a9a4688ccaf4bb85d2aaccb62a6",
+    "logs": [],
+    "blockNumber": 14781417,
+    "cumulativeGasUsed": "29609841",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "69ad74b59d5b928c283c6a17b9814d70",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"check\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isAllowed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isManager\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_contract\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_status\",\"type\":\"bool\"}],\"name\":\"setAllowedContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_manager\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_status\",\"type\":\"bool\"}],\"name\":\"setManager\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"check(address)\":{\"params\":{\"_address\":\"The address to check\"}},\"setAllowedContract(address,bool)\":{\"params\":{\"_contract\":\"The address of the contract\",\"_status\":\"The status to allow the manager \"}},\"setManager(address,bool)\":{\"params\":{\"_manager\":\"The address of the manager\",\"_status\":\"The status to allow the manager \"}}},\"title\":\"SmartWalletChecker\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"check(address)\":{\"notice\":\"returns true is _address is whitelisted\"},\"setAllowedContract(address,bool)\":{\"notice\":\"Sets the status of a contract to be allowed or disallowed\"},\"setManager(address,bool)\":{\"notice\":\"Sets the status of a manager\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/v3/SmartWalletChecker.sol\":\"SmartWalletChecker\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/v3/SmartWalletChecker.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity 0.6.12;\\n\\n/**\\n * @title SmartWalletChecker\\n */\\ncontract SmartWalletChecker {\\n\\n    mapping(address => bool) public isManager;\\n    mapping(address => bool) public isAllowed;\\n\\n    constructor() public {\\n        isManager[msg.sender] = true;\\n    }\\n\\n    /**\\n     * @notice Sets the status of a manager\\n     * @param _manager The address of the manager\\n     * @param _status The status to allow the manager \\n     */\\n    function setManager(\\n        address _manager,\\n        bool _status\\n    )\\n        external\\n        onlyManager\\n    {\\n        isManager[_manager] = _status;\\n    }\\n\\n    /**\\n     * @notice Sets the status of a contract to be allowed or disallowed\\n     * @param _contract The address of the contract\\n     * @param _status The status to allow the manager \\n     */\\n    function setAllowedContract(\\n        address _contract,\\n        bool _status\\n    )\\n        external\\n        onlyManager\\n    {\\n        isAllowed[_contract] = _status;\\n    }\\n\\n    /**\\n     * @notice returns true is _address is whitelisted\\n     * @param _address The address to check\\n     */\\n    function check (\\n        address _address\\n    )\\n        external\\n        view\\n        returns(bool)\\n    {\\n        return isAllowed[_address];\\n    }\\n\\n    modifier onlyManager() {\\n        require(isManager[msg.sender], \\\"!manager\\\");\\n        _;\\n    }\\n}\",\"keccak256\":\"0xa58f48ae637dca29f383faadf4828bccb147a5d53b87344b8e5005dab846c032\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50336000908152602081905260409020805460ff191660011790556102b28061003a6000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806355de1faf1461005c578063a5e90eee1461008c578063babcc539146100ba578063c23697a8146100f4578063f3ae24151461011a575b600080fd5b61008a6004803603604081101561007257600080fd5b506001600160a01b0381351690602001351515610140565b005b61008a600480360360408110156100a257600080fd5b506001600160a01b03813516906020013515156101ba565b6100e0600480360360208110156100d057600080fd5b50356001600160a01b0316610234565b604080519115158252519081900360200190f35b6100e06004803603602081101561010a57600080fd5b50356001600160a01b0316610249565b6100e06004803603602081101561013057600080fd5b50356001600160a01b0316610267565b3360009081526020819052604090205460ff1661018f576040805162461bcd60e51b815260206004820152600860248201526710b6b0b730b3b2b960c11b604482015290519081900360640190fd5b6001600160a01b03919091166000908152600160205260409020805460ff1916911515919091179055565b3360009081526020819052604090205460ff16610209576040805162461bcd60e51b815260206004820152600860248201526710b6b0b730b3b2b960c11b604482015290519081900360640190fd5b6001600160a01b03919091166000908152602081905260409020805460ff1916911515919091179055565b60016020526000908152604090205460ff1681565b6001600160a01b031660009081526001602052604090205460ff1690565b60006020819052908152604090205460ff168156fea26469706673582212203837c8a1181b0a3e0754c344c44fba078cfa9aff20d20d927de862019705b3dc64736f6c634300060c0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c806355de1faf1461005c578063a5e90eee1461008c578063babcc539146100ba578063c23697a8146100f4578063f3ae24151461011a575b600080fd5b61008a6004803603604081101561007257600080fd5b506001600160a01b0381351690602001351515610140565b005b61008a600480360360408110156100a257600080fd5b506001600160a01b03813516906020013515156101ba565b6100e0600480360360208110156100d057600080fd5b50356001600160a01b0316610234565b604080519115158252519081900360200190f35b6100e06004803603602081101561010a57600080fd5b50356001600160a01b0316610249565b6100e06004803603602081101561013057600080fd5b50356001600160a01b0316610267565b3360009081526020819052604090205460ff1661018f576040805162461bcd60e51b815260206004820152600860248201526710b6b0b730b3b2b960c11b604482015290519081900360640190fd5b6001600160a01b03919091166000908152600160205260409020805460ff1916911515919091179055565b3360009081526020819052604090205460ff16610209576040805162461bcd60e51b815260206004820152600860248201526710b6b0b730b3b2b960c11b604482015290519081900360640190fd5b6001600160a01b03919091166000908152602081905260409020805460ff1916911515919091179055565b60016020526000908152604090205460ff1681565b6001600160a01b031660009081526001602052604090205460ff1690565b60006020819052908152604090205460ff168156fea26469706673582212203837c8a1181b0a3e0754c344c44fba078cfa9aff20d20d927de862019705b3dc64736f6c634300060c0033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "check(address)": {
+        "params": {
+          "_address": "The address to check"
+        }
+      },
+      "setAllowedContract(address,bool)": {
+        "params": {
+          "_contract": "The address of the contract",
+          "_status": "The status to allow the manager "
+        }
+      },
+      "setManager(address,bool)": {
+        "params": {
+          "_manager": "The address of the manager",
+          "_status": "The status to allow the manager "
+        }
+      }
+    },
+    "title": "SmartWalletChecker",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "check(address)": {
+        "notice": "returns true is _address is whitelisted"
+      },
+      "setAllowedContract(address,bool)": {
+        "notice": "Sets the status of a contract to be allowed or disallowed"
+      },
+      "setManager(address,bool)": {
+        "notice": "Sets the status of a manager"
+      }
+    },
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 6,
+        "contract": "contracts/v3/SmartWalletChecker.sol:SmartWalletChecker",
+        "label": "isManager",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_bool)"
+      },
+      {
+        "astId": 10,
+        "contract": "contracts/v3/SmartWalletChecker.sol:SmartWalletChecker",
+        "label": "isAllowed",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_bool)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      }
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "address": "0xc6c7A5659Bd02E7b797A462424d1B066f3F1c055",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "addUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_gauge",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "users",
+          "type": "address[]"
+        }
+      ],
+      "name": "checkpointUsers",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "gauge",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "isGaugeUser",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "gauge",
+          "type": "address"
+        }
+      ],
+      "name": "users",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xc70e35141d4be5a32040eb672c7166ca1713fe15886d5534632eae911e75bea1",
+  "receipt": {
+    "to": null,
+    "from": "0x633Db21C73594FBB1cD0DC8829682874f35aD8EF",
+    "contractAddress": "0xc6c7A5659Bd02E7b797A462424d1B066f3F1c055",
+    "transactionIndex": 99,
+    "gasUsed": "350806",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x3bee693b502926fde19c191ed6fe7491f25577e8dd1d519f13634d516ca28b6e",
+    "transactionHash": "0xc70e35141d4be5a32040eb672c7166ca1713fe15886d5534632eae911e75bea1",
+    "logs": [],
+    "blockNumber": 14781319,
+    "cumulativeGasUsed": "13551377",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "4bce2a5028f52fb6d5364343cb1daf51",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"addUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_gauge\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"users\",\"type\":\"address[]\"}],\"name\":\"checkpointUsers\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"gauge\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"isGaugeUser\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"gauge\",\"type\":\"address\"}],\"name\":\"users\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/v3/GaugeUsers.sol\":\"GaugeUsers\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/v3/GaugeUsers.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity 0.6.12;\\npragma experimental ABIEncoderV2;\\n\\ninterface Gauge {\\n    function balanceOf(address user) external view returns (uint256);\\n    function user_checkpoint(address user) external returns (bool);\\n}\\n\\ncontract GaugeUsers {\\n\\n    mapping (address => mapping (address => bool)) private _isGaugeUser;\\n    mapping (address => address[]) private _users;\\n\\n    function isGaugeUser(address gauge, address user) public view returns (bool) {\\n        return _isGaugeUser[gauge][user];\\n    }\\n\\n    function users(address gauge) public view returns (address[] memory) {\\n        return _users[gauge];\\n    }\\n\\n    function addUser(address user) external {\\n        if (!_isGaugeUser[msg.sender][user]) {\\n            _isGaugeUser[msg.sender][user] = true;\\n            _users[msg.sender].push(user);\\n        }\\n    }\\n\\n    function checkpointUsers(address _gauge, address[] memory users) external {\\n        Gauge gauge = Gauge(_gauge);\\n        address user;\\n        for (uint i=0; i<users.length; i++) {\\n            user = users[i];\\n            if (gauge.balanceOf(user) > 0) {\\n                gauge.user_checkpoint(user);\\n            }\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0x664a617e2184f4cbf1f908c9db0c45e8dc0d21617e1da92ec9f6bbee575d1a35\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610562806100206000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80633654cc7d14610051578063421b2d8b14610066578063a87430ba14610079578063c72f7c38146100a2575b600080fd5b61006461005f366004610390565b6100c2565b005b61006461007436600461033a565b6101f9565b61008c61008736600461033a565b61027f565b604051610099919061048d565b60405180910390f35b6100b56100b036600461035c565b6102f5565b60405161009991906104da565b816000805b83518110156101f2578381815181106100dc57fe5b602002602001015191506000836001600160a01b03166370a08231846040518263ffffffff1660e01b81526004016101149190610479565b60206040518083038186803b15801561012c57600080fd5b505afa158015610140573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101649190610461565b11156101ea57604051634b82009360e01b81526001600160a01b03841690634b82009390610196908590600401610479565b602060405180830381600087803b1580156101b057600080fd5b505af11580156101c4573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101e89190610441565b505b6001016100c7565b5050505050565b336000908152602081815260408083206001600160a01b038516845290915290205460ff1661027c57336000818152602081815260408083206001600160a01b038616808552908352818420805460ff19166001908117909155948452848352908320805494850181558352912090910180546001600160a01b03191690911790555b50565b6001600160a01b0381166000908152600160209081526040918290208054835181840281018401909452808452606093928301828280156102e957602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116102cb575b50505050509050919050565b6001600160a01b038083166000908152602081815260408083209385168352929052205460ff165b92915050565b80356001600160a01b038116811461031d57600080fd5b60006020828403121561034b578081fd5b6103558383610323565b9392505050565b6000806040838503121561036e578081fd5b6103788484610323565b91506103878460208501610323565b90509250929050565b600080604083850312156103a2578182fd5b6103ac8484610323565b915060208084013567ffffffffffffffff8111156103c8578283fd5b8401601f810186136103d8578283fd5b80356103eb6103e68261050c565b6104e5565b81815283810190838501858402850186018a1015610407578687fd5b8694505b838510156104315761041d8a82610323565b83526001949094019391850191850161040b565b5080955050505050509250929050565b600060208284031215610452578081fd5b81518015158114610355578182fd5b600060208284031215610472578081fd5b5051919050565b6001600160a01b0391909116815260200190565b6020808252825182820181905260009190848201906040850190845b818110156104ce5783516001600160a01b0316835292840192918401916001016104a9565b50909695505050505050565b901515815260200190565b60405181810167ffffffffffffffff8111828210171561050457600080fd5b604052919050565b600067ffffffffffffffff821115610522578081fd5b506020908102019056fea2646970667358221220571ccfc66a832dfc12cc93439d2859366cbaf8f10e38ef2c63ad1305ea7a633664736f6c634300060c0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80633654cc7d14610051578063421b2d8b14610066578063a87430ba14610079578063c72f7c38146100a2575b600080fd5b61006461005f366004610390565b6100c2565b005b61006461007436600461033a565b6101f9565b61008c61008736600461033a565b61027f565b604051610099919061048d565b60405180910390f35b6100b56100b036600461035c565b6102f5565b60405161009991906104da565b816000805b83518110156101f2578381815181106100dc57fe5b602002602001015191506000836001600160a01b03166370a08231846040518263ffffffff1660e01b81526004016101149190610479565b60206040518083038186803b15801561012c57600080fd5b505afa158015610140573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101649190610461565b11156101ea57604051634b82009360e01b81526001600160a01b03841690634b82009390610196908590600401610479565b602060405180830381600087803b1580156101b057600080fd5b505af11580156101c4573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101e89190610441565b505b6001016100c7565b5050505050565b336000908152602081815260408083206001600160a01b038516845290915290205460ff1661027c57336000818152602081815260408083206001600160a01b038616808552908352818420805460ff19166001908117909155948452848352908320805494850181558352912090910180546001600160a01b03191690911790555b50565b6001600160a01b0381166000908152600160209081526040918290208054835181840281018401909452808452606093928301828280156102e957602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116102cb575b50505050509050919050565b6001600160a01b038083166000908152602081815260408083209385168352929052205460ff165b92915050565b80356001600160a01b038116811461031d57600080fd5b60006020828403121561034b578081fd5b6103558383610323565b9392505050565b6000806040838503121561036e578081fd5b6103788484610323565b91506103878460208501610323565b90509250929050565b600080604083850312156103a2578182fd5b6103ac8484610323565b915060208084013567ffffffffffffffff8111156103c8578283fd5b8401601f810186136103d8578283fd5b80356103eb6103e68261050c565b6104e5565b81815283810190838501858402850186018a1015610407578687fd5b8694505b838510156104315761041d8a82610323565b83526001949094019391850191850161040b565b5080955050505050509250929050565b600060208284031215610452578081fd5b81518015158114610355578182fd5b600060208284031215610472578081fd5b5051919050565b6001600160a01b0391909116815260200190565b6020808252825182820181905260009190848201906040850190845b818110156104ce5783516001600160a01b0316835292840192918401916001016104a9565b50909695505050505050565b901515815260200190565b60405181810167ffffffffffffffff8111828210171561050457600080fd5b604052919050565b600067ffffffffffffffff821115610522578081fd5b506020908102019056fea2646970667358221220571ccfc66a832dfc12cc93439d2859366cbaf8f10e38ef2c63ad1305ea7a633664736f6c634300060c0033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 23,
+        "contract": "contracts/v3/GaugeUsers.sol:GaugeUsers",
+        "label": "_isGaugeUser",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_mapping(t_address,t_bool))"
+      },
+      {
+        "astId": 28,
+        "contract": "contracts/v3/GaugeUsers.sol:GaugeUsers",
+        "label": "_users",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_array(t_address)dyn_storage)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_address)dyn_storage": {
+        "base": "t_address",
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_array(t_address)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => address[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_address)dyn_storage"
+      },
+      "t_mapping(t_address,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => mapping(address => bool))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_address,t_bool)"
+      }
+    }
+  }
+}

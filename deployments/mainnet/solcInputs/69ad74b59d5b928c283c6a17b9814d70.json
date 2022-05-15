@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/v3/SmartWalletChecker.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity 0.6.12;\n\n/**\n * @title SmartWalletChecker\n */\ncontract SmartWalletChecker {\n\n    mapping(address => bool) public isManager;\n    mapping(address => bool) public isAllowed;\n\n    constructor() public {\n        isManager[msg.sender] = true;\n    }\n\n    /**\n     * @notice Sets the status of a manager\n     * @param _manager The address of the manager\n     * @param _status The status to allow the manager \n     */\n    function setManager(\n        address _manager,\n        bool _status\n    )\n        external\n        onlyManager\n    {\n        isManager[_manager] = _status;\n    }\n\n    /**\n     * @notice Sets the status of a contract to be allowed or disallowed\n     * @param _contract The address of the contract\n     * @param _status The status to allow the manager \n     */\n    function setAllowedContract(\n        address _contract,\n        bool _status\n    )\n        external\n        onlyManager\n    {\n        isAllowed[_contract] = _status;\n    }\n\n    /**\n     * @notice returns true is _address is whitelisted\n     * @param _address The address to check\n     */\n    function check (\n        address _address\n    )\n        external\n        view\n        returns(bool)\n    {\n        return isAllowed[_address];\n    }\n\n    modifier onlyManager() {\n        require(isManager[msg.sender], \"!manager\");\n        _;\n    }\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
