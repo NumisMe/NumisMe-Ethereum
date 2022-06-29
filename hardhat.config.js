@@ -358,7 +358,7 @@ module.exports = {
         NUMEETHLP: {
             1: '0xF06550C34946D251C2EACE59fF4336168dB7EbF2',
             31337: '0xF06550C34946D251C2EACE59fF4336168dB7EbF2'
-        }
+        },
     },
     solidity: {
         compilers: [

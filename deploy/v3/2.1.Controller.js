@@ -2,6 +2,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     const { ethers } = require('hardhat');
     const { deploy, execute } = deployments;
     const { deployer } = await getNamedAccounts();
+    
     const Manager = await deployments.get('Manager');
 
     const controller = await deploy('Controller', {

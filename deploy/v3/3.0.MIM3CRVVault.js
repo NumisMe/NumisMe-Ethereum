@@ -38,21 +38,21 @@ module.exports = async ({ getChainId, getNamedAccounts, deployments }) => {
             0,
             ethers.utils.parseEther('1')
         );
-        await execute(
-            'Manager',
-            { from: deployer, log: true },
-            'setAllowedVault',
-            Vault.address,
-            true
-        );
-        await execute('Manager', { from: deployer, log: true }, 'addVault', Vault.address);
-        await execute(
-            'Manager',
-            { from: deployer, log: true },
-            'setController',
-            Vault.address,
-            Controller.address
-        );
+        // await execute(
+        //     'Manager',
+        //     { from: deployer, log: true },
+        //     'setAllowedVault',
+        //     Vault.address,
+        //     true
+        // );
+        // await execute('Manager', { from: deployer, log: true }, 'addVault', Vault.address);
+        // await execute(
+        //     'Manager',
+        //     { from: deployer, log: true },
+        //     'setController',
+        //     Vault.address,
+        //     Controller.address
+        // );
         await execute(
             'MIM3CRVVault',
             { from: deployer, log: true },
@@ -62,4 +62,4 @@ module.exports = async ({ getChainId, getNamedAccounts, deployments }) => {
     }
 };
 
-module.exports.tags = ['eth'];
+module.exports.tags = ['eth', 'vault'];

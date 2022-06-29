@@ -143,7 +143,7 @@ def __init__(_lp_token: address, _minter: address, _admin: address, _gaugeUsers:
     """
 
     symbol: String[26] = ERC20Extended(_lp_token).symbol()
-    self.name = concat("yAxis ", symbol, " Gauge Deposit")
+    self.name = concat("NumisMe ", symbol, " Gauge Deposit")
     self.symbol = concat(symbol, "-gauge")
 
     crv_token: address = Minter(_minter).token()
